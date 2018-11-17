@@ -35,28 +35,38 @@ fn isEmpty(t: Trie) -> bool {
     t.c.iter().all(|x| x.is_none())
 }
 
-fn insertWord<'o>(o: &'o Option<Box<Trie>>, w: &[char]) -> &'o Trie {
+fn insertWord<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
     // Make this Trie exist if it does not
-    let t = match o {
-        &None => &Trie { c: Default::default() },
-        &Some(ref x) => x,
-    };
+    /*
+    if (*o).is_none() {
+        t = Some(Box::new(Trie { c: Default::default() }));
+    }
+    else {
+        t = 
+    */
 
+    let mut t = match *o {
+        None => Trie { c: Default::default() },
+        Some(x) => *x,
+    };
     
     /*
     if 1 <= w.len() {
         let i = letterIndex(w[0]);
-        insertWord(t.c[i], w.split_first().1);
+        insertWord(&mut t.c[i], w.split_first().1);
     }
     */
 
-    return match w.split_first() {
-        None => t,
+    match w.split_first() {
+        None => {},
         Some(wt) => {
             let i = letterIndex(w[0]);
-            insertWord(&(t.c[i]), wt.1)
+            insertWord(&mut t.c[i], wt.1)
         }
     }
+
+
+    *o = Some(Box::new(t))
 
 }
     
