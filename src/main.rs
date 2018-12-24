@@ -36,27 +36,12 @@ fn isEmpty(t: Trie) -> bool {
 }
 
 fn insertWord<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
-    // Make this Trie exist if it does not
-    /*
-    if (*o).is_none() {
-        t = Some(Box::new(Trie { c: Default::default() }));
-    }
-    else {
-        t = 
-    */
 
     let mut t = match *o {
         None => Trie { c: Default::default() },
         Some(x) => *x,
     };
     
-    /*
-    if 1 <= w.len() {
-        let i = letterIndex(w[0]);
-        insertWord(&mut t.c[i], w.split_first().1);
-    }
-    */
-
     match w.split_first() {
         None => {},
         Some(wt) => {
@@ -65,20 +50,6 @@ fn insertWord<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
         }
     }
 
-
     *o = Some(Box::new(t))
 
 }
-    
-/*
-
-fn listToTrie(ws: Vec<Vec<char>>) -> Trie {
-    let t = Trie { 
-        c: Default::default(),
-    };
-    for w in ws {
-        insertWord(t, w)
-    }
-    t
-}
-*/
