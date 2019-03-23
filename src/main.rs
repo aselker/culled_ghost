@@ -1,5 +1,7 @@
 #![deny(warnings)]
 #![allow(unused_parens)]
+#![allow(dead_code)]
+#![allow(unused_variables)]
 
 use std::fs::File;
 use std::io::prelude::*;
@@ -19,7 +21,7 @@ fn main() -> std::io::Result<()> {
     Ok(())
 }
 
-fn letterIndex(c: char) -> usize {
+fn letter_index(c: char) -> usize {
     match (LETTERS.iter().position(|&r| r == c)) {
         Some (x) => x,
         None => 255,
@@ -31,22 +33,28 @@ struct Trie {
     c: [Option<Box<Trie>>; 26],
 }
 
-fn isEmpty(t: Trie) -> bool {
+fn is_empty(t: Trie) -> bool {
     t.c.iter().all(|x| x.is_none())
 }
 
-fn insertWord<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
+fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
 
+    /*
     let mut t = match *o {
         None => Trie { c: Default::default() },
         Some(x) => *x,
     };
+    */
+    let mut t = Trie { c: Default::default() };
+    if (*o).is_some() {
+        t = *((*o).unwrap());
+    }
     
     match w.split_first() {
         None => {},
         Some(wt) => {
-            let i = letterIndex(w[0]);
-            insertWord(&mut t.c[i], wt.1)
+            let i = letter_index(w[0]);
+            insert_word(&mut (t.c[i]), wt.1)
         }
     }
 
