@@ -28,7 +28,7 @@ fn letter_index(c: char) -> usize {
     }
 }
 
-// type Trie = [Option<Box<Trie>>; 26];
+#[derive(Debug)]
 struct Trie { 
     c: [Option<Box<Trie>>; 26],
 }
@@ -37,14 +37,14 @@ fn is_empty(t: Trie) -> bool {
     t.c.iter().all(|x| x.is_none())
 }
 
-fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
+// Add an empty subtree to the nth index of a trie, overwriting whatever was there
+fn add_subtree(t: &mut Trie, n: usize) {
+    let subtrie = Trie { c: Default::default() };
+    t.c[n] = Some(Box::new(subtrie));
+}
 
-    /*
-    let mut t = match *o {
-        None => Trie { c: Default::default() },
-        Some(x) => *x,
-    };
-    */
+/*
+fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
     let mut t = Trie { c: Default::default() };
     if (*o).is_some() {
         t = *((*o).unwrap());
@@ -59,5 +59,5 @@ fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
     }
 
     *o = Some(Box::new(t))
-
 }
+*/
