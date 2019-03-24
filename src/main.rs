@@ -32,7 +32,9 @@ fn main() -> std::io::Result<()> {
 fn letter_index(c: char) -> usize {
     match (LETTERS.iter().position(|&r| r == c)) {
         Some (x) => x,
-        None => 255,
+        None => {
+            panic!("Character {} is not in the alphabet", c);
+        },
     }
 }
 
