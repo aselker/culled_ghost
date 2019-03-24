@@ -20,8 +20,11 @@ fn main() -> std::io::Result<()> {
     // }
     
     let mut t = Trie { c: Default::default() };
-    add_subtree(&mut t, 5);
-    println!("{:#?}", t); // Use {:?} for less verbose
+    println!("{:#?}", t);
+    add_subsubtree(&mut t, 1, 2);
+    println!("{:#?}", t);
+    add_subsubtree(&mut t, 1, 3);
+    println!("{:#?}", t);
 
     Ok(())
 }
@@ -44,9 +47,44 @@ fn is_empty(t: Trie) -> bool {
 
 // Add an empty subtree to the nth index of a trie, overwriting whatever was there
 fn add_subtree(t: &mut Trie, n: usize) {
-    let subtrie = Trie { c: Default::default() };
-    t.c[n] = Some(Box::new(subtrie));
+    let subtree = Trie { c: Default::default() };
+    t.c[n] = Some(Box::new(subtree));
 }
+
+fn add_subtree_string(t: &mut Trie, ns: &[usize]) {
+    match ns.split_first() {
+        None => {},
+        Some((n, rest)) => {
+            let mut subtree = Trie { c: Default::default() };
+            add_subtree_string(&mut subtree, rest);
+            t.c[*n] = Some(Box::new(subtree));
+        },
+    }
+}
+
+fn add_subsubtree(t: &mut Trie, n1: usize, n2: usize) {
+    match t.c[n1] {
+        None => {
+            let mut subtree = Trie { c: Default::default() };
+            add_subtree(&mut subtree, n2);
+            t.c[n1] = Some(Box::new(subtree));
+        },
+        Some(ref mut subtree) => {
+            add_subtree(subtree, n2);
+        },
+    }
+}
+
+/*
+fn insert_word(t: &mut Trie, w: &[char]) {
+    match w.split_first() {
+        None => {},
+        Some((head, tail)) => {
+            let n = letter_index(head);
+            match t.c[n] {
+                None => {
+                    t.c[n] = Some(Box::new(Trie{ c: Default::default() }));
+*/
 
 /*
 fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
