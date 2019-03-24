@@ -15,9 +15,14 @@ fn main() -> std::io::Result<()> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let split = contents.split("\n");
-    for s in split {
-        println!("{}", s);
-    }
+    // for s in split {
+    //     println!("{}", s);
+    // }
+    
+    let mut t = Trie { c: Default::default() };
+    add_subtree(&mut t, 5);
+    println!("{:#?}", t); // Use {:?} for less verbose
+
     Ok(())
 }
 
