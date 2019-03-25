@@ -44,37 +44,6 @@ fn is_empty(t: Trie) -> bool {
     t.c.iter().all(|x| x.is_none())
 }
 
-// Add an empty subtree to the nth index of a trie, overwriting whatever was there
-fn add_subtree(t: &mut Trie, n: usize) {
-    let subtree = Trie { c: Default::default() };
-    t.c[n] = Some(Box::new(subtree));
-}
-
-fn add_subtree_string(t: &mut Trie, ns: &[usize]) {
-    match ns.split_first() {
-        None => {},
-        Some((n, rest)) => {
-            let mut subtree = Trie { c: Default::default() };
-            add_subtree_string(&mut subtree, rest);
-            t.c[*n] = Some(Box::new(subtree));
-        },
-    }
-}
-
-fn add_subsubtree(t: &mut Trie, n1: usize, n2: usize) {
-    match t.c[n1] {
-        None => {
-            let mut subtree = Trie { c: Default::default() };
-            add_subtree(&mut subtree, n2);
-            t.c[n1] = Some(Box::new(subtree));
-        },
-        Some(ref mut subtree) => {
-            add_subtree(subtree, n2);
-        },
-    }
-}
-
-
 fn insert_word(t: &mut Trie, w: &str) {
     if w.len() == 0 { return; } 
 
