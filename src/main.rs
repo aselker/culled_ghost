@@ -77,16 +77,27 @@ fn add_subsubtree(t: &mut Trie, n1: usize, n2: usize) {
     }
 }
 
-/*
+
 fn insert_word(t: &mut Trie, w: &[char]) {
     match w.split_first() {
         None => {},
         Some((head, tail)) => {
-            let n = letter_index(head);
+            let n = letter_index(*head);
             match t.c[n] {
                 None => {
-                    t.c[n] = Some(Box::new(Trie{ c: Default::default() }));
-*/
+                    let mut subtree = Trie { c: Default::default() };
+                    insert_word(&mut subtree, tail);
+                    t.c[n] = Some(Box::new(subtree));
+                },
+                Some(ref mut subtree) => {
+                    insert_word(subtree, tail);
+                },
+            }
+        }
+    }
+}
+                
+
 
 /*
 fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
