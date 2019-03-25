@@ -14,16 +14,13 @@ fn main() -> std::io::Result<()> {
     let mut file = File::open("wordlist-short.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
-    let split = contents.split("\n");
-    // for s in split {
-    //     println!("{}", s);
-    // }
-    
+    let words = contents.split("\n");
+
     let mut t = Trie { c: Default::default() };
-    println!("{:#?}", t);
-    add_subsubtree(&mut t, 1, 2);
-    println!("{:#?}", t);
-    add_subsubtree(&mut t, 1, 3);
+    for word in words {
+        println!("{}", word);
+        insert_word(&mut t, word);
+    }
     println!("{:#?}", t);
 
     Ok(())
@@ -78,11 +75,14 @@ fn add_subsubtree(t: &mut Trie, n1: usize, n2: usize) {
 }
 
 
-fn insert_word(t: &mut Trie, w: &[char]) {
-    match w.split_first() {
+fn insert_word(t: &mut Trie, w: &str) {
+    if w.len() == 0 { return; } 
+
+    let (heads, tail) = w.split_at(1);
+    match heads.chars().next() { // It should be exactly one char...
         None => {},
-        Some((head, tail)) => {
-            let n = letter_index(*head);
+        Some(head) =>  {
+            let n = letter_index(head);
             match t.c[n] {
                 None => {
                     let mut subtree = Trie { c: Default::default() };
@@ -93,27 +93,8 @@ fn insert_word(t: &mut Trie, w: &[char]) {
                     insert_word(subtree, tail);
                 },
             }
-        }
+        },
+
     }
+
 }
-                
-
-
-/*
-fn insert_word<'o>(o: &'o mut Option<Box<Trie>>, w: &[char]) {
-    let mut t = Trie { c: Default::default() };
-    if (*o).is_some() {
-        t = *((*o).unwrap());
-    }
-    
-    match w.split_first() {
-        None => {},
-        Some(wt) => {
-            let i = letter_index(w[0]);
-            insert_word(&mut (t.c[i]), wt.1)
-        }
-    }
-
-    *o = Some(Box::new(t))
-}
-*/
