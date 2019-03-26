@@ -16,12 +16,12 @@ fn main() -> std::io::Result<()> {
     file.read_to_string(&mut contents)?;
     let words = contents.split("\n");
 
+    // Build the trie
     let mut t = Trie { c: Default::default() };
     for word in words {
-        println!("{}", word);
-        insert_word(&mut t, word);
+        t.insert_word(word);
     }
-    println!("{:#?}", t);
+    println!("{}", t.pretty_print());
 
     Ok(())
 }
@@ -45,11 +45,13 @@ impl Trie {
         self.c.iter().all(|x| x.is_none())
     }
 
+    // All words represented by the Trie, newline-separated
     // TODO: Make this be the default printing method
     fn pretty_print(&self) -> String {
         self.pretty_print_helper(String::new())
     }
 
+    // pretty_print with a prefix
     fn pretty_print_helper(&self, prefix: String) -> String {
         
         let mut out = String::new();
@@ -61,6 +63,7 @@ impl Trie {
                     let this_prefix = (prefix.clone() + &(LETTERS[i].to_string()));
                     if subtree.is_empty() {
                         out += &this_prefix;
+                        out += "\n";
                      } else {
                         out += &subtree.pretty_print_helper(this_prefix);
                     }
@@ -69,28 +72,28 @@ impl Trie {
         }
         return out;
     }
-} // end impl
 
-fn insert_word(t: &mut Trie, w: &str) {
-    if w.len() == 0 { return; } 
+    fn insert_word(&mut self, w: &str) {
+        if w.len() == 0 { return; } 
 
-    let (heads, tail) = w.split_at(1);
-    match heads.chars().next() { // It should be exactly one char...
-        None => {},
-        Some(head) =>  {
-            let n = letter_index(head);
-            match t.c[n] {
-                None => {
-                    let mut subtree = Trie { c: Default::default() };
-                    insert_word(&mut subtree, tail);
-                    t.c[n] = Some(Box::new(subtree));
-                },
-                Some(ref mut subtree) => {
-                    insert_word(subtree, tail);
-                },
-            }
-        },
+        let (heads, tail) = w.split_at(1);
+        match heads.chars().next() { // It should be exactly one char...
+            None => {},
+            Some(head) =>  {
+                let n = letter_index(head);
+                match self.c[n] {
+                    None => {
+                        let mut subtree = Trie { c: Default::default() };
+                        subtree.insert_word(tail);
+                        self.c[n] = Some(Box::new(subtree));
+                    },
+                    Some(ref mut subtree) => {
+                        subtree.insert_word(tail);
+                    },
+                }
+            },
+
+        }
 
     }
-
-}
+} // end impl
