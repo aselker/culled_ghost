@@ -40,8 +40,35 @@ struct Trie {
     c: [Option<Box<Trie>>; 26],
 }
 
+// TODO: Make this and other functions be methods of Trie, when I learn how to do that
 fn is_empty(t: Trie) -> bool {
     t.c.iter().all(|x| x.is_none())
+}
+
+// TODO: Make this be the default printing method
+fn pretty_print(t: Trie) -> String {
+    pretty_print_helper(t, String::new())
+}
+
+fn pretty_print_helper(t: Trie, prefix: String) -> String {
+    // if is_empty(t) { return; }
+    
+    let mut out = String::new();
+
+    for (i, subtree) in t.c.iter().enumerate() {
+        match subtree {
+            None => {},
+            Some(boxed) => {
+                let thisPrefix = (prefix.clone() + &(LETTERS[i].to_string()));
+                if is_empty(**boxed) {
+                    out += &thisPrefix;
+                } else {
+                    out += &pretty_print_helper(**boxed, thisPrefix);
+                }
+            },
+        }
+    }
+    return out;
 }
 
 fn insert_word(t: &mut Trie, w: &str) {
