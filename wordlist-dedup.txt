@@ -400,7 +400,6 @@ aid
 aiken
 ail
 aim
-ain't
 ainu
 air
 aisle
@@ -844,7 +843,6 @@ aruba
 arum
 aryan
 aryl
-a's
 asbestos
 ascend
 ascension
@@ -1666,7 +1664,6 @@ bryn
 bryophyta
 bryophyte
 bryozoa
-b's
 bstj
 btl
 btu
@@ -2651,7 +2648,6 @@ crutch
 crux
 cruz
 cry
-c's
 csnet
 cub
 cuckoo
@@ -2769,7 +2765,6 @@ daphne
 dapper
 dapple
 dar
-d'art
 dart
 darwin
 dash
@@ -2984,7 +2979,6 @@ des
 detach
 detail
 detain
-d'etat
 detect
 detent
 deter
@@ -3170,7 +3164,6 @@ doctrine
 document
 dod
 doe
-d'oeuvre
 doff
 dog
 doherty
@@ -3302,7 +3295,6 @@ drum
 drunk
 drury
 dry
-d's
 dual
 duane
 dub
@@ -3469,7 +3461,6 @@ edward
 edwin
 eel
 eeoc
-e'er
 eerie
 eerily
 efface
@@ -3915,7 +3906,6 @@ erudition
 erupt
 ervin
 erwin
-e's
 escadrille
 escalate
 escalating
@@ -4611,7 +4601,6 @@ frustrating
 frustration
 frustum
 fry
-f's
 ftc
 fuchs
 fudge
@@ -5052,7 +5041,6 @@ grumbling
 grumman
 grunt
 gryphon
-g's
 gsa
 guam
 guanidine
@@ -5202,7 +5190,6 @@ heck
 hectic
 hector
 hecuba
-he'd
 hedge
 hedonism
 hedonist
@@ -5229,7 +5216,6 @@ heliocentric
 heliotrope
 helium
 helix
-he'll
 hell
 helm
 help
@@ -5242,7 +5228,6 @@ hepatitis
 hepburn
 heptane
 her
-he's
 hesitant
 hesitate
 hesitating
@@ -5414,7 +5399,6 @@ hove
 how
 hoy
 hrothgar
-h's
 hub
 huck
 huddle
@@ -5518,7 +5502,6 @@ icon
 icosahedra
 icosahedron
 icy
-i'd
 ida
 idea
 idempotent
@@ -5568,12 +5551,10 @@ ike
 ileum
 iliac
 iliad
-i'll
 ill
 ilona
 iloveyou
 ilyushin
-i'm
 image
 imaginable
 imaginably
@@ -6221,7 +6202,6 @@ irruption
 irs
 irvin
 irwin
-i's
 isaac
 isabel
 isadore
@@ -6233,7 +6213,6 @@ isis
 islam
 island
 isle
-isn't
 isochronal
 isochronous
 isocline
@@ -6262,7 +6241,6 @@ italian
 italic
 italy
 itch
-it'd
 item
 iterate
 iterating
@@ -6272,14 +6250,11 @@ iterator
 ithaca
 itinerant
 itinerary
-it'll
 ito
-it's
 its
 it&t
 itt
 ivan
-i've
 iverson
 ivies
 ivory
@@ -6399,7 +6374,6 @@ jovial
 jovian
 jowl
 joy
-j's
 juan
 jubilant
 jubilate
@@ -6655,7 +6629,6 @@ krueger
 kruger
 kruse
 krypton
-k's
 kudo
 kudzu
 kuhn
@@ -6915,7 +6888,6 @@ lodge
 lodging
 lodowick
 loeb
-l'oeil
 loess
 loft
 log
@@ -6957,7 +6929,6 @@ loving
 low
 loy
 lozenge
-l's
 lsi
 ltd
 ltv
@@ -7023,7 +6994,6 @@ luther
 lutz
 lux
 luzon
-l'vov
 lycopodium
 lydia
 lye
@@ -7042,7 +7012,6 @@ lyric
 lysenko
 lysergic
 lysine
-ma'am
 mabel
 mac
 mad
@@ -7579,7 +7548,6 @@ moyer
 mozart
 mph
 mrs
-m's
 much
 mucilage
 muck
@@ -7945,7 +7913,6 @@ now
 noxious
 nozzle
 nrc
-n's
 nsf
 ntis
 nuance
@@ -8027,7 +7994,6 @@ oblong
 obnoxious
 oboe
 oboist
-o'brien
 obscene
 obscure
 obscuring
@@ -8082,35 +8048,26 @@ occupy
 occur
 ocean
 ocelot
-o'clock
-o'connell
-o'connor
 oct
 ocular
 odd
 ode
-o'dell
-ode's
 odes
 odin
 odious
 odium
 odometer
-o'donnell
 odor
-o'dwyer
 odysseus
 odyssey
 oedipal
 oedipus
-o'er
 oersted
 off
 oft
 ogden
 ogle
 ogre
-o'hare
 ohio
 ohm
 oil
@@ -8122,7 +8079,6 @@ olaf
 olav
 old
 oleander
-o'leary
 olefin
 oleomargarine
 olfactory
@@ -8161,10 +8117,8 @@ once
 oncology
 oncoming
 one
-o'neill
 oneness
 onerous
-one's
 ones
 onetime
 oneupmanship
@@ -8273,7 +8227,6 @@ orphan
 orpheus
 orphic
 orr
-or's
 ortega
 orthant
 orthicon
@@ -8289,7 +8242,6 @@ orthophosphate
 orthorhombic
 orville
 orwell
-o's
 osaka
 osborn
 oscar
@@ -8300,7 +8252,6 @@ oscillator
 oscilloscope
 osgood
 osha
-o'shea
 oshkosh
 osier
 osiris
@@ -8320,7 +8271,6 @@ ostracism
 ostracod
 ostrander
 ostrich
-o'sullivan
 oswald
 othello
 other
@@ -8936,7 +8886,6 @@ pruning
 prurient
 prussia
 pry
-p's
 psalm
 psalter
 pseudo
@@ -9045,7 +8994,6 @@ qatar
 qaywsx
 qazwsx
 qed
-q's
 qua
 queasy
 quebec
@@ -9685,7 +9633,6 @@ row
 roxbury
 roy
 rpm
-r's
 rsvp
 ruanda
 rub
@@ -10060,7 +10007,6 @@ sham
 shanghai
 shank
 shannon
-shan't
 shanties
 shantung
 shanty
@@ -10540,7 +10486,6 @@ squirrel
 squirt
 squishy
 sri
-s's
 sse
 sst
 ssw
@@ -11476,7 +11421,6 @@ trust
 truth
 trw
 try
-t's
 tsar
 tsunami
 ttl
@@ -12026,7 +11970,6 @@ ursula
 ursuline
 uruguay
 u.s
-u's
 u.s.a
 usa
 usc
@@ -12360,7 +12303,6 @@ vow
 voyage
 voyaging
 vreeland
-v's
 vulcan
 vulgar
 vulnerabilities
@@ -12428,7 +12370,6 @@ weave
 weaving
 web
 weco
-we'd
 wed
 wee
 wehr
@@ -12438,7 +12379,6 @@ welcome
 welcoming
 weld
 welfare
-we'll
 well
 welsh
 welt
@@ -12447,14 +12387,12 @@ wendell
 wendy
 went
 wept
-we're
 were
 werner
 wert
 wesley
 west
 wet
-we've
 weyerhauser
 whack
 whale
@@ -12599,7 +12537,6 @@ wrote
 wrought
 wrung
 wry
-w's
 wuhan
 wyandotte
 wyatt
@@ -12615,7 +12552,6 @@ xenophobia
 xerography
 xerox
 xerxes
-x's
 xylem
 xylene
 xylophone
@@ -12670,7 +12606,6 @@ yost
 you
 yow
 ypsilanti
-y's
 ytterbium
 yttrium
 yucatan
@@ -12723,7 +12658,6 @@ zorn
 zoroaster
 zoroastrian
 zounds
-z's
 zucchini
 zurich
 zxcvbn
