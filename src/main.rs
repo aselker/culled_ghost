@@ -22,6 +22,8 @@ fn main() -> std::io::Result<()> {
         t.insert_word(word);
     }
     println!("{}", t.pretty_print());
+    println!("{}", t.will_win());
+    println!("{}", t.will_lose());
 
     Ok(())
 }
@@ -95,5 +97,34 @@ impl Trie {
 
         }
 
+    }
+
+    // Don't use, it wastes effort
+    fn will_win(&self) -> bool {
+        self.c.iter().all(|x| match x {
+            None => true,
+            Some(ref subtree) => subtree.will_lose(),
+        })
+    }
+
+    fn will_lose(&self) -> bool {
+        self.c.iter().any(|x| match x {
+            None => false,
+            Some(ref subtree) => subtree.will_win(),
+        })
+    }
+
+    fn cull(&mut self) {
+        for (i, maybe) in self.c.iter().enumerate() {
+            match maybe {
+                None => {},
+                Some(ref mut subtree) => {
+                    subtree.cull();
+                    if subtree.is_empty() {
+                        self.c[i] = None;
+                    }
+                },
+            }
+        }
     }
 } // end impl
