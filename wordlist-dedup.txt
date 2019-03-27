@@ -485,7 +485,6 @@ alveolus
 alvin
 alway
 alyssum
-a&m
 ama
 ambassador
 amber
@@ -625,7 +624,6 @@ anxiety
 anxious
 any
 aorta
-a&p
 apace
 apache
 apart
@@ -942,7 +940,6 @@ atrophied
 atrophies
 atrophy
 atropos
-at&t
 attach
 attack
 attain
@@ -3483,7 +3480,6 @@ effort
 effusion
 effusive
 eft
-e.g
 egalitarian
 egan
 egg
@@ -5530,7 +5526,6 @@ idling
 idly
 idol
 idyll
-i.e
 ieee
 iffy
 ifni
@@ -6252,7 +6247,6 @@ itinerant
 itinerary
 ito
 its
-it&t
 itt
 ivan
 iverson
@@ -8437,7 +8431,6 @@ pharmacopoeia
 pharmacy
 phase
 phasing
-ph.d
 phd
 pheasant
 phelps
@@ -9120,7 +9113,6 @@ raze
 razor
 razzle
 rca
-r&d
 reabbreviate
 reabbreviating
 reach
@@ -10489,7 +10481,6 @@ sri
 sse
 sst
 ssw
-st.
 stab
 staccato
 stack
@@ -11969,8 +11960,6 @@ ursa
 ursula
 ursuline
 uruguay
-u.s
-u.s.a
 usa
 usc
 usda
