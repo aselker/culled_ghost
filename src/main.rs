@@ -99,7 +99,6 @@ impl Trie {
 
     }
 
-    // Don't use, it wastes effort
     fn will_win(&self) -> bool {
         self.c.iter().all(|x| match x {
             None => true,
@@ -112,19 +111,5 @@ impl Trie {
             None => false,
             Some(ref subtree) => subtree.will_win(),
         })
-    }
-
-    fn cull(&mut self) {
-        for (i, maybe) in self.c.iter().enumerate() {
-            match maybe {
-                None => {},
-                Some(ref mut subtree) => {
-                    subtree.cull();
-                    if subtree.is_empty() {
-                        self.c[i] = None;
-                    }
-                },
-            }
-        }
     }
 } // end impl
