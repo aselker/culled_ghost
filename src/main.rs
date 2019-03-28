@@ -23,7 +23,9 @@ fn main() -> std::io::Result<()> {
         t.insert_word(word);
     }
     println!("{}", t.pretty_print());
-    println!("{}", t.list_wins());
+    println!("win: {:#?}", t.list_wins());
+    println!("lose: {:#?}", t.list_losses());
+    println!("both: {:#?}", t.list_wins_losses());
 
     Ok(())
 }
@@ -96,6 +98,8 @@ impl Trie {
         }
     }
 
+    /*
+     * I think these are wrong...
     fn will_win(&self) -> bool {
         self.c.iter().all(|x| match x {
             None => true,
@@ -109,19 +113,105 @@ impl Trie {
             Some(ref subtree) => subtree.will_win(),
         })
     }
+    */
 
-    fn list_wins(&self) -> String {
-        let mut out = String::new();
-        for (i, subtree) in self.c.iter().enumerate() {
-            match subtree {
+    // Print all words you might have to play to win
+    fn list_wins(&self) -> Vec<String> {
+        // List at least one winning response
+        let mut out = Vec::new();
+        for (i, maybe) in self.c.iter().enumerate() {
+            match maybe {
                 None => {},
-                Some(_) => {
-                    out += &LETTERS[i].to_string();
-                    out += "\n";
+                Some(subtree) => {
+                    let prefix = LETTERS[i].to_string();
+                    let losses = subtree.list_losses();
+                    if losses.len() != 0 {
+                        for loss in losses {
+                            out.push(prefix.clone() + &loss);
+                        }
+                        break;
+                    }
                 },
             }
         }
         return out;
     }
 
+    // Print all words you can play, but only if they all lose
+    fn list_losses(&self) -> Vec<String> { 
+        // If this is empty, it's a word and therefore loses
+        if self.is_empty() {
+            return vec![String::new()];
+        }         
+
+        // List all possible responses
+        let mut out = Vec::new();
+        for (i, maybe) in self.c.iter().enumerate() {
+            let mut this_loses = false;
+            match maybe {
+                None => {},
+                Some(subtree) => {
+                    let prefix = LETTERS[i].to_string();
+                    let wins = subtree.list_wins();
+                    if wins.len() != 0 {
+                        for win in wins {
+                            out.push(prefix.clone() + &win);
+                        }
+                        this_loses = true;
+                    }
+                },
+            }
+            if !this_loses {
+                return vec![];
+            }
+        }
+        return out;
+    }
+
+    // If any move wins (i.e. forces an opponent to lose), then this returns that
+    // move and any actions you might eventually have to take to maintain that win.
+    // If no moves win (i.e. you are forced to lose), then this returns every action 
+    // you might take, and all the things your opponent might have to do to maintain
+    // their win.
+    fn list_wins_losses(&self) -> (Vec<String>, Vec<String>) {
+        // If this is empty, then it immediately loses
+        if self.is_empty() {
+            return (vec![], vec![String::new()]);
+        }
+
+        let mut losses_out = Vec::new();
+        for (i, maybe) in self.c.iter().enumerate() {
+            match maybe {
+                None => {},
+                Some(subtree) => {
+                    let prefix = LETTERS[i].to_string();
+                    let wins_and_losses = subtree.list_wins_losses();
+                    let wins = wins_and_losses.0;
+                    let losses = wins_and_losses.1;
+
+                    // If this neither wins nor loses, then something is up...
+                    if wins.len() == 0 && losses.len() == 0 {
+                        panic!("{} neither wins nor loses!", prefix)
+                    }
+
+                    // If we can force them to lose, do it
+                    if wins.len() == 0 {
+                        let mut wins_out = Vec::new();
+                        for loss in losses {
+                            wins_out.push(prefix.clone() + &loss);
+                        }
+                        return (wins_out, vec![]);
+                    }
+                    
+                    // Otherwise, add to the list of losses
+                    for win in wins {
+                        losses_out.push(prefix.clone() + &win);
+                    }
+                },
+            }
+        }
+
+        // We lose.
+        return (vec![], losses_out);
+    }
 } // end impl
