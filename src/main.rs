@@ -22,8 +22,11 @@ fn main() -> std::io::Result<()> {
     for word in words {
         t.insert_word(word);
     }
-    println!("{}", t.pretty_print());
-    println!("both: {:#?}", t.list_wins_losses());
+
+    let wins_and_losses = t.list_wins_losses();
+    let wins = wins_and_losses.0;
+    let losses = wins_and_losses.1;
+    println!("Winning words: {:?}", wins);
 
     Ok(())
 }
