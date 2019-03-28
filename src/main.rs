@@ -11,19 +11,19 @@ const LETTERS: [char; 26] =['a','b','c','d','e','f','g','h','i','j','k','l','m',
 
 fn main() -> std::io::Result<()> {
     // First, load the word list (which is already thinned)
+    println!("Loading file...");
     let mut file = File::open("wordlist-short.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let words = contents.split("\n");
-
+    println!("Building trie...");
     // Build the trie
     let mut t = Trie { c: Default::default() };
     for word in words {
         t.insert_word(word);
     }
     println!("{}", t.pretty_print());
-    println!("{}", t.will_win());
-    println!("{}", t.will_lose());
+    println!("{}", t.list_wins());
 
     Ok(())
 }
@@ -55,7 +55,6 @@ impl Trie {
 
     // pretty_print with a prefix
     fn pretty_print_helper(&self, prefix: String) -> String {
-        
         let mut out = String::new();
 
         for (i, subtree) in self.c.iter().enumerate() {
@@ -94,9 +93,7 @@ impl Trie {
                     },
                 }
             },
-
         }
-
     }
 
     fn will_win(&self) -> bool {
@@ -112,4 +109,19 @@ impl Trie {
             Some(ref subtree) => subtree.will_win(),
         })
     }
+
+    fn list_wins(&self) -> String {
+        let mut out = String::new();
+        for (i, subtree) in self.c.iter().enumerate() {
+            match subtree {
+                None => {},
+                Some(_) => {
+                    out += &LETTERS[i].to_string();
+                    out += "\n";
+                },
+            }
+        }
+        return out;
+    }
+
 } // end impl
