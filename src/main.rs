@@ -12,7 +12,7 @@ const LETTERS: [char; 26] =['a','b','c','d','e','f','g','h','i','j','k','l','m',
 fn main() -> std::io::Result<()> {
     // First, load the word list (which is already thinned)
     println!("Loading file...");
-    let mut file = File::open("wordlist-short.txt")?;
+    let mut file = File::open("wordlist-dedup.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let words = contents.split("\n");
@@ -102,9 +102,10 @@ impl Trie {
     // you might take, and all the things your opponent might have to do to maintain
     // their win.
     fn list_wins_losses(&self) -> (Vec<String>, Vec<String>) {
-        // If this is empty, then it immediately loses
+        // If this is empty, then it wins (kind of)
         if self.is_empty() {
-            return (vec![], vec![String::new()]);
+            // return (vec![], vec![String::new()]);
+            return (vec![String::new()], vec![]);
         }
 
         let mut losses_out = Vec::new();
