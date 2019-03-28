@@ -23,8 +23,6 @@ fn main() -> std::io::Result<()> {
         t.insert_word(word);
     }
     println!("{}", t.pretty_print());
-    println!("win: {:#?}", t.list_wins());
-    println!("lose: {:#?}", t.list_losses());
     println!("both: {:#?}", t.list_wins_losses());
 
     Ok(())
@@ -96,76 +94,6 @@ impl Trie {
                 }
             },
         }
-    }
-
-    /*
-     * I think these are wrong...
-    fn will_win(&self) -> bool {
-        self.c.iter().all(|x| match x {
-            None => true,
-            Some(ref subtree) => subtree.will_lose(),
-        })
-    }
-
-    fn will_lose(&self) -> bool {
-        self.c.iter().any(|x| match x {
-            None => false,
-            Some(ref subtree) => subtree.will_win(),
-        })
-    }
-    */
-
-    // Print all words you might have to play to win
-    fn list_wins(&self) -> Vec<String> {
-        // List at least one winning response
-        let mut out = Vec::new();
-        for (i, maybe) in self.c.iter().enumerate() {
-            match maybe {
-                None => {},
-                Some(subtree) => {
-                    let prefix = LETTERS[i].to_string();
-                    let losses = subtree.list_losses();
-                    if losses.len() != 0 {
-                        for loss in losses {
-                            out.push(prefix.clone() + &loss);
-                        }
-                        break;
-                    }
-                },
-            }
-        }
-        return out;
-    }
-
-    // Print all words you can play, but only if they all lose
-    fn list_losses(&self) -> Vec<String> { 
-        // If this is empty, it's a word and therefore loses
-        if self.is_empty() {
-            return vec![String::new()];
-        }         
-
-        // List all possible responses
-        let mut out = Vec::new();
-        for (i, maybe) in self.c.iter().enumerate() {
-            let mut this_loses = false;
-            match maybe {
-                None => {},
-                Some(subtree) => {
-                    let prefix = LETTERS[i].to_string();
-                    let wins = subtree.list_wins();
-                    if wins.len() != 0 {
-                        for win in wins {
-                            out.push(prefix.clone() + &win);
-                        }
-                        this_loses = true;
-                    }
-                },
-            }
-            if !this_loses {
-                return vec![];
-            }
-        }
-        return out;
     }
 
     // If any move wins (i.e. forces an opponent to lose), then this returns that
